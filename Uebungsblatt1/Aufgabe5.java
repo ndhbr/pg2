@@ -15,6 +15,8 @@ public class Aufgabe5
         System.out.print("Zahl2: ");
         bis = sc.nextInt();
 
+        sc.close();
+
         if(bis < von) {
             int tmp = von;
             von = bis;
