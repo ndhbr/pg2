@@ -2,6 +2,49 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe11",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe11",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe14",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe14",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe13",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe13",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe12",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe12",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe10",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe10",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe9",
+            "request": "launch",
+            "mainClass": "Uebungsblatt1.Aufgabe9",
+            "projectName": "pg2_7462ff6",
+            "console": "externalTerminal"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Aufgabe8",
             "request": "launch",
             "mainClass": "Uebungsblatt1.Aufgabe8",
