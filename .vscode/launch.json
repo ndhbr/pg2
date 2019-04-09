@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - PersonalVerwaltung",
+            "request": "launch",
+            "mainClass": "Uebungsblatt3.PersonalVerwaltung",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe1",
+            "request": "launch",
+            "mainClass": "Uebungsblatt2.Aufgabe1.Aufgabe1",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Aufgabe1",
+            "request": "launch",
+            "mainClass": "Uebungsblatt2.Aufgabe1",
+            "projectName": "pg2_7462ff6"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Aufgabe11",
             "request": "launch",
             "mainClass": "Uebungsblatt1.Aufgabe11",
