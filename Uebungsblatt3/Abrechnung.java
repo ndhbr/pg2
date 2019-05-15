@@ -20,6 +20,7 @@ public abstract class Abrechnung {
         return mitarbeiter;
     }
 
+    @Override
     public String toString() {
         return String.valueOf(getPeriode()) + ", " + getMitarbeiter().getName() +
             ", " + getVerdienst();
