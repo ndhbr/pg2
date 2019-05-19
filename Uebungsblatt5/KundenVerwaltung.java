@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,11 +20,15 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class KundenVerwaltung extends JFrame {
 
     private KundeTableModel kundeTableModel;
     private ListSelectionModel kundeSelectionModel;
+    private JMenuItem menuItem;
 
     public class KundenBearbeitenDialog extends JDialog {
 
@@ -86,15 +91,27 @@ public class KundenVerwaltung extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         this.kundeTableModel = new KundeTableModel(kunden);
+
         JTable table = new JTable(kundeTableModel);
         kundeSelectionModel = table.getSelectionModel();
         kundeSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        kundeSelectionModel.addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent event) {
+                if(event.getFirstIndex() > -1)
+                    menuItem.setEnabled(true);
+                else
+                    menuItem.setEnabled(false);
+            }
+        });
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
         JScrollPane scrollPane = new JScrollPane(table);
+
         JPanel titlePane = new JPanel();
         titlePane.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createEtchedBorder(), "Tabellenansicht"
+            BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.BLUE, Color.RED), "Tabellenansicht"
         ));
         titlePane.setLayout(new BorderLayout());
         titlePane.add(scrollPane);
@@ -113,11 +130,13 @@ public class KundenVerwaltung extends JFrame {
         setJMenuBar(menuBar);
 
         JMenu menu;
-        JMenuItem menuItem;
+        JMenuItem menuItemBeenden = new JMenuItem("Beenden");
+        menuItem = new JMenuItem("Kunde bearbeiten");
+        menuItem.setEnabled(false);
 
         menuBar.add(menu = new JMenu("Datei"));
 
-        menu.add(menuItem = new JMenuItem("Kunde bearbeiten"));
+        menu.add(menuItem);
         menuItem.addActionListener(new ActionListener(){
 
             @Override
@@ -128,8 +147,8 @@ public class KundenVerwaltung extends JFrame {
 
         menu.add(new JSeparator());
 
-        menu.add(menuItem = new JMenuItem("Beenden"));
-        menuItem.addActionListener(new ActionListener(){
+        menu.add(menuItemBeenden);
+        menuItemBeenden.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {

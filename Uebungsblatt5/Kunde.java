@@ -2,9 +2,7 @@ public class Kunde {
     private String nachname;
     private String vorname;
 
-    public Kunde() {
-
-    }
+    public Kunde() {}
 
     public Kunde(String nachname, String vorname) {
         this.nachname = nachname;

@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CalculatorFrame",
+            "request": "launch",
+            "mainClass": "CalculatorFrame",
+            "projectName": "pg2_fd6d2408"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Calculator",
+            "request": "launch",
+            "mainClass": "Calculator",
+            "projectName": "pg2_fd6d2408"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - BFrame",
             "request": "launch",
             "mainClass": "BFrame",
