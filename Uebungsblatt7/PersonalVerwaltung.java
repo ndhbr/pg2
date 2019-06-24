@@ -1,11 +1,11 @@
 class PersonalVerwaltung {
 
-    static MitarbeiterListe mitarbeiterListe;
-    static AbrechnungenListe abrechnungenListe;
+    static MyArrayList<Mitarbeiter> mitarbeiterListe;
+    static MyArrayList<Abrechnung> abrechnungenListe;
 
     public static void main(String[] args) {
-        mitarbeiterListe = new MitarbeiterListe(3);
-        abrechnungenListe = new AbrechnungenListe(6);
+        mitarbeiterListe = new MyArrayList<Mitarbeiter>(3);
+        abrechnungenListe = new MyArrayList<Abrechnung>(6);
         PersonalVerwaltung pv = new PersonalVerwaltung();
 
         Mitarbeiter m1 = new Mitarbeiter("Josef Maier");
