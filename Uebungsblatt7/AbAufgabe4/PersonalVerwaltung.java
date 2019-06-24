@@ -1,3 +1,5 @@
+package AbAufgabe4;
+
 class PersonalVerwaltung {
 
     static MyArrayList<Mitarbeiter> mitarbeiterListe;
@@ -45,8 +47,8 @@ class PersonalVerwaltung {
         pv.addMitarbeiter(m12);
 
         pv.listMitarbeiter();
-        //pv.sortMitarbeiter();
-        //pv.listMitarbeiter();
+        pv.sortMitarbeiter();
+        pv.listMitarbeiter();
 
         pv.addAbrechnung(new LohnAbrechnung(1, m1, 10, 158));
         pv.addAbrechnung(new GehaltsAbrechnung(1, m2, 3010));
@@ -54,7 +56,7 @@ class PersonalVerwaltung {
         pv.addAbrechnung(new LohnAbrechnung(2, m1, 16, 158));
         pv.addAbrechnung(new GehaltsAbrechnung(2, m2, 3010));
         pv.addAbrechnung(new GehaltsAbrechnung(2, m3, 2800));
-        //pv.listAbrechnungen(2);
+        pv.listAbrechnungen(2);
     }
 
     public void addMitarbeiter(Mitarbeiter m) {
@@ -70,24 +72,21 @@ class PersonalVerwaltung {
     }
 
     public void listMitarbeiter() {
-        int size = mitarbeiterListe.getSize();
+        System.out.println("Mitarbeiter: ");
 
-        for(int i = 0; i < size; i++) {
-            System.out.println(mitarbeiterListe.get(i).toString());
+        for(Mitarbeiter m : mitarbeiterListe) {
+            System.out.println(m);
         }
     }
 
     public void listAbrechnungen(int periode) {
-        int size = abrechnungenListe.getSize();
+        System.out.println("Abrechnungen: ");
 
-        for(int i = 0; i < size; i++) {
-            Abrechnung tmpAbrechnung = abrechnungenListe.get(i);
+        for(Abrechnung a : abrechnungenListe) {
+            if(a.getPeriode() != periode)
+                continue;
 
-            if(tmpAbrechnung.getPeriode() == periode) {
-                System.out.println(periode + ", " +
-                    tmpAbrechnung.getMitarbeiter().getName() + ", " +
-                    tmpAbrechnung.getVerdienst());
-            }
+            System.out.println(a);
         }
     }
 

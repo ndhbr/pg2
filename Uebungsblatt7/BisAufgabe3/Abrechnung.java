@@ -1,3 +1,5 @@
+package BisAufgabe3;
+
 public abstract class Abrechnung {
 
     private int periode;

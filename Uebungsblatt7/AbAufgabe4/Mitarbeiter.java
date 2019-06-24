@@ -1,3 +1,5 @@
+package AbAufgabe4;
+
 class Mitarbeiter {
 
     private static int count = 1;

@@ -1,3 +1,5 @@
+package AbAufgabe4;
+
 public class GehaltsAbrechnung extends Abrechnung {
 
     private double gehalt;
