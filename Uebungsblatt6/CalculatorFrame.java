@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,10 +12,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class CalculatorFrame extends JFrame {
 
     Calculator calculator;
+    private JTextField resultField;
+    private JTextField argumentField;
+    private JComboBox functionField;
 
     public CalculatorFrame() {
         calculator = new Calculator();
@@ -23,31 +29,71 @@ public class CalculatorFrame extends JFrame {
     private void initGui() {
         setTitle("Taschenrechner");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(4, 3));
+
+        BorderLayout borderLayout = new BorderLayout();
+
+        setLayout(borderLayout);
 
         JMenuBar menuBar = initMenuBar();
         setJMenuBar(menuBar);
 
-        add(new JLabel("Ergebnis:", JLabel.LEFT));
-        add(new JLabel("Funktion:", JLabel.LEFT));
-        add(new JLabel("Argument:", JLabel.LEFT));
-
         String[] functions = {"+", "*"};
 
-        JTextField resultField = new JTextField();
-        JTextField argumentField = new JTextField();
-        JComboBox functionField = new JComboBox<String>(functions);
+        resultField = new JTextField();
+        argumentField = new JTextField();
+        functionField = new JComboBox<String>(functions);
 
         resultField.setEditable(false);
-        resultField.setText(String.valueOf(calculator.getResult()));
+        updateResult();
 
-        add(resultField);
-        add(functionField);
-        add(argumentField);
+        add(new JLabel("Ergebnis:", JLabel.LEFT), BorderLayout.LINE_START);
+        add(resultField, BorderLayout.LINE_END);
+        add(new JLabel("Funktion:", JLabel.LEFT), BorderLayout.LINE_START);
+        add(functionField, BorderLayout.LINE_END);
+        add(new JLabel("Argument:", JLabel.LEFT), BorderLayout.LINE_START);
+        add(argumentField, BorderLayout.LINE_END);
 
         JButton calcBtn = new JButton("Berechnen");
         JButton undoBtn = new JButton("Rückgängig");
         JButton clearBtn = new JButton("Zurücksetzen");
+
+        calcBtn.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double argument;
+
+                try {
+                    argument = Double.valueOf(argumentField.getText());
+
+                    if(functionField.getSelectedItem().toString().equals("+")) {
+                        calculator.apply(new Addition(), argument);
+                    } else {
+                        calculator.apply(new Multiplication(), argument);
+                    }
+
+                    updateResult();
+                } catch(NumberFormatException exception) {
+                    resultField.setText("Ungültige Eingabe!");
+                }
+            }
+        });
+
+        undoBtn.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doUndo();
+            }
+        });
+
+        clearBtn.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doClear();
+            }
+        });
 
         add(calcBtn);
         add(undoBtn);
@@ -75,7 +121,7 @@ public class CalculatorFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                calculator.undo();
+                doUndo();
             }
         });
 
@@ -83,11 +129,26 @@ public class CalculatorFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                calculator.clear();
+                doClear();
             }
         });
 
         return menuBar;
+    }
+
+    private void doUndo() {
+        calculator.undo();
+        updateResult();
+    }
+
+    private void doClear() {
+        calculator.clear();
+        updateResult();
+    }
+
+    private void updateResult() {
+        String newResult = String.valueOf(calculator.getResult());
+        resultField.setText(newResult);
     }
 
     public static void main(String args[]) {
